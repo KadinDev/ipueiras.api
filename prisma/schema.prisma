@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+  name String
+  email String
+  password String
+  
+  create_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+  
+  // USER vai ter uma loja 
+  store StoreUser? // pode ter somente 1 loja cadastrada
+  // myStore StoreUser[], assim seria informando que 1 usuario pode ter várias lojas cadastradas
+  // aí em StoreUser passaria assim: authorId String (sem o @unique)
+
+  @@map("users")
+}
+
+model StoreUser {
+  id String @id @default(uuid())
+  name String
+  description String
+  searchStore String?
+  banner String
+
+  images String[] @default([""])
+  latitude String?
+  longitude String?
+  contact String?
+  address String?
+  
+  stripe_customer_id String? // Store pode ou não ter uma assinatura paga no sistema
+  
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+  
+  @@map("storeUser")
+
+  authorId String @unique
+  author User @relation(fields: [authorId], references: [id])
+
+
+  categoryId String
+  category Category @relation(fields: [categoryId], references: [id])
+
+  subscriptions Subscription? // pode ter somente 1 assinatura
+}
+
+model Subscription {
+  id String @id // esse ID vai ser mandado pelo sistema de pagamento
+  status String
+  priceId String
+  create_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("subscriptions")
+
+  storeId String @unique
+  store StoreUser @relation(fields: [storeId], references: [id])
+}
+
+model Category {
+  id String @id @default(uuid())
+  name String
+
+  created_at DateTime? @default(now()) 
+  updated_at DateTime? @default(now())
+
+  // Essa categoria pode estar(pertencer) a varias lojas cadastradas
+  category StoreUser[]
+
+  @@map("categories")
+}
