@@ -29,7 +29,6 @@ class CreateStoreUserService{
                 description,
                 banner,
                 authorId: user_id,
-                searchStore: description.toLocaleLowerCase(),
                 categoryId: category_id,
                 address
             }

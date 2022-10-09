@@ -35,12 +35,12 @@ router.post('/register', new CreateUserController().handleCreateUser)
 // --- ROTAS STORE --- //
 router.get('/home', new ListAllStoreController().handleListAllStoreController)
 router.post('/home/search', new SearchStoreController().handleFindByStore)
-router.get('/detail-store', new DetailStoreUserController().handleDetailStoreUser)
-router.get('/my-store/check', isAuthenticated, new CheckVipController().handleCheckVip)
-router.post('/new-store', isAuthenticated, upload.single('file'), new CreateStoreUserController().handleCreateStore)
-router.put('/my-store/updated', isAuthenticated, upload.single('file'), new UpdatedStoreController().handleUpdatedStore)
+router.get('/detailstore', new DetailStoreUserController().handleDetailStoreUser)
+router.get('/mystore/check', isAuthenticated, new CheckVipController().handleCheckVip)
+router.post('/newstore', isAuthenticated, upload.single('file'), new CreateStoreUserController().handleCreateStore)
+router.put('/mystore/updated', isAuthenticated, upload.single('file'), new UpdatedStoreController().handleUpdatedStore)
 
-router.delete('/my-store/delete', isAuthenticated, new DeleteStoreController().handleDeleteStore)
+router.delete('/mystore/delete', isAuthenticated, new DeleteStoreController().handleDeleteStore)
 
 // --- CATEGORY --- //
 router.get('/category', new ListAllCategoryController().handleListAllCategory)

@@ -3,8 +3,18 @@ import {UpdatedStoreService} from '../../services/store/UpdatedStoreService'
 
 class UpdatedStoreController{
     async handleUpdatedStore(req: Request, res: Response){
-        const {name, description, latitude,
-        longitude, contact, address, images, category_id} = req.body
+        const {
+            name, 
+            description, 
+            latitude,
+            longitude, 
+            contact, 
+            address, 
+            images, 
+            category_id,
+            time,
+            attendance
+        } = req.body
 
         const user_id = req.user_id
         const store_id = req.query.store_id as string
@@ -29,7 +39,9 @@ class UpdatedStoreController{
                 contact,
                 latitude,
                 longitude,
-                category_id
+                category_id,
+                time,
+                attendance
             })
 
             return res.json(storeUpdated)

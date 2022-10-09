@@ -9,7 +9,7 @@ class SearchStoreService {
         
         const findStore = await prismaClient.storeUser.findMany({
             where: {
-                searchStore: {
+                description: {
                     contains: store,
                 },
             },

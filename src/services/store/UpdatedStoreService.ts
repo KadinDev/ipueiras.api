@@ -13,13 +13,15 @@ interface StoreRequest {
     longitude?: string,
     contact?: string,
     address?: string,
+    time?: string,
+    attendance?: string,
 }
 
 
 class UpdatedStoreService {
     async execute({
         user_id, store_id, name, banner, description, images, latitude,
-        longitude, address, contact, category_id
+        longitude, address, contact, category_id, time, attendance
     } : StoreRequest){
         
         if(!name || !description || !banner){
@@ -67,7 +69,6 @@ class UpdatedStoreService {
                     banner,
                     categoryId: category_id,
                     address,
-                    searchStore: description.toLocaleLowerCase()
                 }
             })
 
@@ -85,12 +86,13 @@ class UpdatedStoreService {
                     description,
                     banner,
                     images,
+                    time,
+                    attendance,
                     latitude,
                     longitude,
                     contact,
                     address,
                     categoryId: category_id,
-                    searchStore: description.toLocaleLowerCase()
                 }
             })
             

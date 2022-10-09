@@ -33,7 +33,7 @@ class DetailUserService{
             }
         })
 
-        return {user}
+        return user
     }
 }
 

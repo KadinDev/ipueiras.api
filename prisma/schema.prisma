@@ -39,6 +39,8 @@ model StoreUser {
   longitude String?
   contact String?
   address String?
+  time String?
+  attendance String?
   
   stripe_customer_id String? // Store pode ou não ter uma assinatura paga no sistema
   

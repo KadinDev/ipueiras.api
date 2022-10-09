@@ -22,13 +22,14 @@ class ListAllStoreService {
                 },
                 category: {
                     select: {
+                        id: true,
                         name: true
                     }
                 }
             }
         })
 
-        return {stores}
+        return stores
     }
 }
 

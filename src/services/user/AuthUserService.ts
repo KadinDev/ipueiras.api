@@ -52,7 +52,7 @@ class AuthUserService {
             }
         )
         
-        return {
+        const authUser = {
             id: user.id,
             name: user.name,
             email: user.email,
@@ -63,6 +63,9 @@ class AuthUserService {
                 name: user?.store.name
             } : null
         }
+
+
+        return authUser
     }
 }
 
