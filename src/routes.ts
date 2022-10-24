@@ -1,6 +1,5 @@
 import {Router} from 'express'
 import multer from 'multer'
-import uploadConfig from './config/multer'
 
 // USER
 import {AuthUserController} from './controllers/user/AuthUserController'
@@ -20,12 +19,13 @@ import {SearchStoreController} from './controllers/store/SearchStoreController'
 import {ListAllCategoryController} from './controllers/category/ListAllCategoryController'
 import {SearchCategoryStoreController} from './controllers/store/SearchCategoryStoreController'
 
-
 import {isAuthenticated} from './middlewares/isAuthenticated'
 
-const upload = multer(uploadConfig.upload("./tmp"))
+import uploadConfig from './config/multer'
 
 const router = Router()
+
+const upload = multer(uploadConfig.upload("./tmp"))
 
 // --- ROTAS USER --- //
 router.get('/me', isAuthenticated, new DetailUserController().handleDetailUser)
