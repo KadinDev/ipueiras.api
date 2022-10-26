@@ -15,13 +15,14 @@ interface StoreRequest {
     address?: string,
     time?: string,
     attendance?: string,
+    instagram?: string,
 }
 
 
 class UpdatedStoreService {
     async execute({
         user_id, store_id, name, banner, description, images, latitude,
-        longitude, address, contact, category_id, time, attendance
+        longitude, address, contact, category_id, time, attendance, instagram
     } : StoreRequest){
         
         if(!name || !description || !banner){
@@ -54,6 +55,7 @@ class UpdatedStoreService {
             throw new Error('Not authorized')
         }
 
+        /*
         if(authorStore?.store?.subscriptions?.status !== 'active'){
             //throw new Error("Necessário tornar-se VIP para acessar as novas informações")
             const store = await prismaClient.storeUser.update({
@@ -93,11 +95,35 @@ class UpdatedStoreService {
                     contact,
                     address,
                     categoryId: category_id,
+                    instagram
                 }
             })
-            
-            return storeUpdated
         }
+        */
+
+        const storeUpdated = await prismaClient.storeUser.update({
+            where: {
+                id: store_id
+            },
+            
+            data: {
+                updated_at: new Date(),
+                name,
+                description,
+                banner,
+                images,
+                time,
+                attendance,
+                latitude,
+                longitude,
+                contact,
+                address,
+                categoryId: category_id,
+                instagram
+            }
+        })
+        
+        return storeUpdated
  
     }
 }

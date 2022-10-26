@@ -5,21 +5,35 @@ interface StoreRequest{
     name: string;
     description: string;
     banner: string;
+
+    latitude?: string,
+    longitude?: string,
+    contact?: string,
+    address: string;
+    time?: string,
+    attendance?: string,
+    instagram?: string,
     category_id: string;
-    address: string
 }
 
 class CreateStoreUserService{
     async execute({
-        user_id,
+        user_id, // id do dono da loja
         name,
         description,
         banner,
+    
+        latitude,
+        longitude,
+        contact,
+        address,
+        time,
+        attendance,
+        instagram,
         category_id,
-        address
     } : StoreRequest){
         
-        if(!name || !description || !banner || !category_id){
+        if(!name || !description || !banner || !category_id ){
             throw new Error("campos vazios não são permitidos")
         }
 
@@ -28,9 +42,15 @@ class CreateStoreUserService{
                 name,
                 description,
                 banner,
+                latitude,
+                longitude,
+                contact,
+                address,
+                time,
+                attendance,
+                instagram,
                 authorId: user_id,
                 categoryId: category_id,
-                address
             }
         })
 

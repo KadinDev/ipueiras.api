@@ -3,7 +3,19 @@ import {CreateStoreUserService} from '../../services/store/CreateStoreUserServic
 
 class CreateStoreUserController{
     async handleCreateStore(req: Request, res: Response){
-        const { name, description, category_id, address } = req.body
+        const { 
+            name, 
+            description, 
+            latitude, 
+            longitude,
+            contact,
+            address,
+            time,
+            attendance,
+            instagram,
+            category_id
+        } = req.body
+        
         const user_id = req.user_id // id do usuário logado
 
         const createStore = new CreateStoreUserService()
@@ -16,10 +28,16 @@ class CreateStoreUserController{
             const store = await createStore.execute({
                 user_id,
                 name,
-                banner,
                 description,
+                banner,
+                latitude,
+                longitude,
+                contact,
+                address,
+                time,
+                attendance,
+                instagram,    
                 category_id,
-                address
             })
 
             return res.json(store)

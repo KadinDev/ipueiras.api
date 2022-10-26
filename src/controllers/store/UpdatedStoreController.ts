@@ -13,7 +13,8 @@ class UpdatedStoreController{
             images, 
             category_id,
             time,
-            attendance
+            attendance,
+            instagram
         } = req.body
 
         const user_id = req.user_id
@@ -41,7 +42,8 @@ class UpdatedStoreController{
                 longitude,
                 category_id,
                 time,
-                attendance
+                attendance,
+                instagram
             })
 
             return res.json(storeUpdated)
