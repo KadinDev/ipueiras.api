@@ -26,7 +26,7 @@ class AuthUserService {
         // verificar se a senha está correta
         // password = a info que estou mandando pelo body
         // user.password = minha senha cadastrada no banco de dados
-        const checkPassword = await compare(password, user.password)
+        const checkPassword = await compare(password, user?.password)
 
         if (!checkPassword){
             throw new Error("Senha incorreta!")
@@ -51,21 +51,18 @@ class AuthUserService {
                 expiresIn: '30d' //quando vai expirar esse token
             }
         )
-        
-        const authUser = {
-            id: user.id,
-            name: user.name,
-            email: user.email,
-            token,
+
+        return {
+            id: user?.id,
+            name: user?.name,
+            email: user?.email,
+            token: token,
 
             store: user?.store ? {
-                id: user?.store.id,
-                name: user?.store.name
+                id: user?.store?.id,
+                name: user?.store?.name,
             } : null
         }
-
-
-        return authUser
     }
 }
 
