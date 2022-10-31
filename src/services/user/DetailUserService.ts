@@ -17,20 +17,9 @@ class DetailUserService{
                 updated_at: true,
                 
                 // pegar da loja
-                store: {
-                    select: {
-                        id: true,
-                        name: true,
-                        subscriptions: {
-                            select: {
-                                id: true,
-                                priceId: true,
-                                status: true
-                            }
-                        }
-                    }
-                }
+                store: true,
             }
+           
         })
 
         return user
