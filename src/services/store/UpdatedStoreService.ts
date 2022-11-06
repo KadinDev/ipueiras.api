@@ -8,7 +8,6 @@ interface StoreRequest {
     banner: string,
     category_id: string,
 
-    images?: string[],
     latitude?: string,
     longitude?: string,
     contact?: string,
@@ -21,7 +20,7 @@ interface StoreRequest {
 
 class UpdatedStoreService {
     async execute({
-        user_id, store_id, name, banner, description, images, latitude,
+        user_id, store_id, name, banner, description, latitude,
         longitude, address, contact, category_id, time, attendance, instagram
     } : StoreRequest){
         
@@ -111,7 +110,6 @@ class UpdatedStoreService {
                 name,
                 description,
                 banner,
-                images,
                 time,
                 attendance,
                 latitude,
