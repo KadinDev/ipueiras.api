@@ -33,7 +33,6 @@ model StoreUser {
   description String
   banner String
 
-  images String[] @default([""])
   latitude String?
   longitude String?
   contact String?
@@ -41,8 +40,6 @@ model StoreUser {
   time String?
   attendance String?
   instagram String?
-  
-  stripe_customer_id String? // Store pode ou não ter uma assinatura paga no sistema
   
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())

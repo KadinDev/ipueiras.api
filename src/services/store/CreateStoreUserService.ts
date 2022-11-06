@@ -4,7 +4,7 @@ interface StoreRequest{
     user_id: string; // id do dono da loja
     name: string;
     description: string;
-    banner?: string;
+    banner: string;
 
     latitude?: string,
     longitude?: string,
