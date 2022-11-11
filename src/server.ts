@@ -10,12 +10,12 @@ app.use(express.json())
 //app.use(cors())
 
 app.use(router)
+
 // caso queira dizer qual front terá acesso ao back
-/*
 app.use(cors({
     origin: 'http://exemplo.com.br'
 }))
-*/
+
 app.use(
     '/files', // qual será a rota
     // criando rota estática, onde vou passar a rota(/files), com o nome da foto conforma informado abaixo 
